@@ -42,6 +42,9 @@ function Layout({ children }: LayoutProps) {
               <Link to="/products" className="text-gray-700 hover:text-primary">
                 제품
               </Link>
+              <Link to="/orders" className="text-gray-700 hover:text-primary">
+                주문
+              </Link>
               <Link to="/subscription" className="text-gray-700 hover:text-primary">
                 구독
               </Link>

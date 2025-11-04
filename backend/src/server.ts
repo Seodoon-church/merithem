@@ -13,6 +13,7 @@ import subscriptionRoutes from './routes/subscriptionRoutes'
 import aiRoutes from './routes/aiRoutes'
 import productRoutes from './routes/productRoutes'
 import cartRoutes from './routes/cartRoutes'
+import orderRoutes from './routes/orderRoutes'
 
 // Load environment variables
 dotenv.config()
@@ -74,6 +75,9 @@ app.use(`${API_PREFIX}/products`, productRoutes)
 
 // Cart routes
 app.use(`${API_PREFIX}/cart`, cartRoutes)
+
+// Order routes
+app.use(`${API_PREFIX}/orders`, orderRoutes)
 
 // Error handling middleware
 app.use(errorHandler)
