@@ -4,27 +4,73 @@
 
 @layer base {
   * {
-    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  html {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+
   body {
-    @apply bg-gray-50 text-gray-900 font-sans;
+    @apply bg-white text-gray-900 font-sans;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
+  /* 네이버 스타일 버튼 */
   .btn-primary {
-    @apply bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors;
+    @apply bg-gradient-to-r from-primary to-primary-600 text-white px-6 py-3 rounded-lg font-medium
+           hover:from-primary-600 hover:to-primary-700 transition-all duration-200
+           shadow-soft hover:shadow-card active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-transparent text-primary border border-primary px-4 py-2 rounded-lg font-medium hover:bg-primary/10 transition-colors;
+    @apply bg-white text-primary border-2 border-primary px-6 py-3 rounded-lg font-medium
+           hover:bg-primary-50 transition-all duration-200 shadow-soft hover:shadow-card;
   }
 
+  .btn-ghost {
+    @apply text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors;
+  }
+
+  /* 네이버 스타일 인풋 */
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+           transition-all duration-200 placeholder-gray-400;
   }
 
+  /* 네이버 스타일 카드 */
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+    @apply bg-white rounded-2xl shadow-card border border-gray-100 p-6
+           hover:shadow-hover transition-all duration-200;
+  }
+
+  .card-flat {
+    @apply bg-white rounded-xl border border-gray-200 p-6;
+  }
+
+  /* 네이버 스타일 섹션 */
+  .section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-header {
+    @apply text-center mb-12 lg:mb-16;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    @apply text-lg sm:text-xl text-gray-600;
   }
 }

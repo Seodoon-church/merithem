@@ -35,6 +35,21 @@ function RegisterPage() {
       return
     }
 
+    if (!/[A-Z]/.test(formData.password)) {
+      setError('비밀번호에 최소 1개의 대문자가 포함되어야 합니다.')
+      return
+    }
+
+    if (!/[a-z]/.test(formData.password)) {
+      setError('비밀번호에 최소 1개의 소문자가 포함되어야 합니다.')
+      return
+    }
+
+    if (!/\d/.test(formData.password)) {
+      setError('비밀번호에 최소 1개의 숫자가 포함되어야 합니다.')
+      return
+    }
+
     if (!formData.agreeTerms || !formData.agreePrivacy) {
       setError('필수 약관에 동의해주세요.')
       return
@@ -52,7 +67,8 @@ function RegisterPage() {
       })
       navigate('/dashboard')
     } catch (err: any) {
-      setError(authError || '회원가입에 실패했습니다. 다시 시도해주세요.')
+      const errorMessage = err.response?.data?.message || authError || '회원가입에 실패했습니다. 다시 시도해주세요.'
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -144,9 +160,12 @@ function RegisterPage() {
                 value={formData.password}
                 onChange={handleChange}
                 className="input-field"
-                placeholder="최소 8자 이상"
+                placeholder="Password123"
                 required
               />
+              <p className="mt-2 text-xs text-gray-500">
+                • 8자 이상 • 대문자 1개 이상 • 소문자 1개 이상 • 숫자 1개 이상
+              </p>
             </div>
 
             <div>

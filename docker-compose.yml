@@ -114,7 +114,7 @@ services:
       - /app/node_modules
     networks:
       - lumiplus-network
-    command: npm run dev
+    command: npm run dev -- --host 0.0.0.0
 
   # MongoDB (for AI service data)
   mongodb:
