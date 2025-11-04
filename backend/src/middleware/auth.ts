@@ -61,3 +61,6 @@ export const roleMiddleware = (...allowedRoles: string[]) => {
     next()
   }
 }
+
+// Export alias for consistency
+export const auth = authMiddleware
