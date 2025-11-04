@@ -4,12 +4,14 @@ import helmet from 'helmet'
 import dotenv from 'dotenv'
 import { errorHandler } from './middleware/errorHandler'
 import { logger } from './utils/logger'
+import authRoutes from './routes/authRoutes'
 
 // Load environment variables
 dotenv.config()
 
 const app: Application = express()
 const PORT = process.env.PORT || 5000
+const API_PREFIX = process.env.API_PREFIX || '/api/v1'
 
 // Middleware
 app.use(helmet())
@@ -29,14 +31,17 @@ app.get('/health', (req, res) => {
   })
 })
 
-// API routes (to be implemented)
-app.get('/api/v1', (req, res) => {
+// API routes
+app.get(API_PREFIX, (req, res) => {
   res.json({
     message: 'LUMI+ Platform API',
     version: '1.0.0',
     status: 'active',
   })
 })
+
+// Auth routes
+app.use(`${API_PREFIX}/auth`, authRoutes)
 
 // Error handling middleware
 app.use(errorHandler)
@@ -45,6 +50,7 @@ app.use(errorHandler)
 app.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`)
   logger.info(`Environment: ${process.env.NODE_ENV}`)
+  logger.info(`API prefix: ${API_PREFIX}`)
 })
 
 export default app
