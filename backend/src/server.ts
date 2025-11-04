@@ -5,6 +5,8 @@ import dotenv from 'dotenv'
 import { errorHandler } from './middleware/errorHandler'
 import { logger } from './utils/logger'
 import authRoutes from './routes/authRoutes'
+import userRoutes from './routes/userRoutes'
+import deviceRoutes from './routes/deviceRoutes'
 
 // Load environment variables
 dotenv.config()
@@ -42,6 +44,12 @@ app.get(API_PREFIX, (req, res) => {
 
 // Auth routes
 app.use(`${API_PREFIX}/auth`, authRoutes)
+
+// User routes
+app.use(`${API_PREFIX}/users`, userRoutes)
+
+// Device routes
+app.use(`${API_PREFIX}/devices`, deviceRoutes)
 
 // Error handling middleware
 app.use(errorHandler)

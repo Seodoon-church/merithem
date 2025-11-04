@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../store/authStore'
 
 function LoginPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { login, error: authError, clearError } = useAuthStore()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,17 +17,14 @@ function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    clearError()
     setLoading(true)
 
     try {
-      // TODO: Implement API call
-      console.log('Login attempt:', formData)
-      // Temporary navigation for development
-      setTimeout(() => {
-        navigate('/dashboard')
-      }, 1000)
-    } catch (err) {
-      setError('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.')
+      await login(formData.email, formData.password)
+      navigate('/dashboard')
+    } catch (err: any) {
+      setError(authError || '로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.')
     } finally {
       setLoading(false)
     }

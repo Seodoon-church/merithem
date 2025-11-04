@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../store/authStore'
 
 function RegisterPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { register, error: authError, clearError } = useAuthStore()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,6 +22,7 @@ function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    clearError()
 
     // Validation
     if (formData.password !== formData.confirmPassword) {
@@ -40,14 +43,16 @@ function RegisterPage() {
     setLoading(true)
 
     try {
-      // TODO: Implement API call
-      console.log('Register attempt:', formData)
-      // Temporary navigation for development
-      setTimeout(() => {
-        navigate('/login')
-      }, 1000)
-    } catch (err) {
-      setError('회원가입에 실패했습니다. 다시 시도해주세요.')
+      await register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone,
+        language: 'ko',
+      })
+      navigate('/dashboard')
+    } catch (err: any) {
+      setError(authError || '회원가입에 실패했습니다. 다시 시도해주세요.')
     } finally {
       setLoading(false)
     }
