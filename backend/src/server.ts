@@ -7,6 +7,8 @@ import { logger } from './utils/logger'
 import authRoutes from './routes/authRoutes'
 import userRoutes from './routes/userRoutes'
 import deviceRoutes from './routes/deviceRoutes'
+import dashboardRoutes from './routes/dashboardRoutes'
+import diagnosisRoutes from './routes/diagnosisRoutes'
 
 // Load environment variables
 dotenv.config()
@@ -50,6 +52,12 @@ app.use(`${API_PREFIX}/users`, userRoutes)
 
 // Device routes
 app.use(`${API_PREFIX}/devices`, deviceRoutes)
+
+// Dashboard routes
+app.use(`${API_PREFIX}/dashboard`, dashboardRoutes)
+
+// Diagnosis routes
+app.use(`${API_PREFIX}/diagnoses`, diagnosisRoutes)
 
 // Error handling middleware
 app.use(errorHandler)

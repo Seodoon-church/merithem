@@ -6,6 +6,8 @@ import RegisterPage from './pages/auth/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
 import ProfilePage from './pages/ProfilePage'
 import DevicesPage from './pages/DevicesPage'
+import DiagnosesPage from './pages/DiagnosesPage'
+import DiagnosisDetailPage from './pages/DiagnosisDetailPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const queryClient = new QueryClient({
@@ -46,6 +48,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <DevicesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/diagnoses"
+            element={
+              <ProtectedRoute>
+                <DiagnosesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/diagnoses/:id"
+            element={
+              <ProtectedRoute>
+                <DiagnosisDetailPage />
               </ProtectedRoute>
             }
           />

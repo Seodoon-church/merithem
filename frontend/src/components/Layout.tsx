@@ -33,6 +33,9 @@ function Layout({ children }: LayoutProps) {
               <Link to="/devices" className="text-gray-700 hover:text-primary">
                 {t('devices')}
               </Link>
+              <Link to="/diagnoses" className="text-gray-700 hover:text-primary">
+                진단 이력
+              </Link>
               <Link to="/profile" className="text-gray-700 hover:text-primary">
                 {t('profile')}
               </Link>
