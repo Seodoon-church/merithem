@@ -39,11 +39,29 @@ function Layout({ children }: LayoutProps) {
               <Link to="/diagnoses" className="text-gray-700 hover:text-primary">
                 진단 이력
               </Link>
+              <Link to="/products" className="text-gray-700 hover:text-primary">
+                제품
+              </Link>
               <Link to="/subscription" className="text-gray-700 hover:text-primary">
                 구독
               </Link>
               <Link to="/profile" className="text-gray-700 hover:text-primary">
                 {t('profile')}
+              </Link>
+              <Link to="/cart" className="text-gray-700 hover:text-primary relative">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                  />
+                </svg>
               </Link>
               <LanguageSwitcher />
               <div className="flex items-center gap-3">

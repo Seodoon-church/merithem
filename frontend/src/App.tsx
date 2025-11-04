@@ -11,6 +11,9 @@ import DiagnosisDetailPage from './pages/DiagnosisDetailPage'
 import SubscriptionPlansPage from './pages/SubscriptionPlansPage'
 import SubscriptionPage from './pages/SubscriptionPage'
 import SkinAnalysisPage from './pages/SkinAnalysisPage'
+import ProductsPage from './pages/ProductsPage'
+import ProductDetailPage from './pages/ProductDetailPage'
+import CartPage from './pages/CartPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const queryClient = new QueryClient({
@@ -91,6 +94,30 @@ function App() {
             element={
               <ProtectedRoute>
                 <SkinAnalysisPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <ProtectedRoute>
+                <ProductsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/products/:id"
+            element={
+              <ProtectedRoute>
+                <ProductDetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <CartPage />
               </ProtectedRoute>
             }
           />
