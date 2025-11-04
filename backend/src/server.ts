@@ -9,6 +9,7 @@ import userRoutes from './routes/userRoutes'
 import deviceRoutes from './routes/deviceRoutes'
 import dashboardRoutes from './routes/dashboardRoutes'
 import diagnosisRoutes from './routes/diagnosisRoutes'
+import subscriptionRoutes from './routes/subscriptionRoutes'
 
 // Load environment variables
 dotenv.config()
@@ -58,6 +59,9 @@ app.use(`${API_PREFIX}/dashboard`, dashboardRoutes)
 
 // Diagnosis routes
 app.use(`${API_PREFIX}/diagnoses`, diagnosisRoutes)
+
+// Subscription routes
+app.use(`${API_PREFIX}/subscriptions`, subscriptionRoutes)
 
 // Error handling middleware
 app.use(errorHandler)
