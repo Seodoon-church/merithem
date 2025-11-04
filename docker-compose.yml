@@ -76,6 +76,26 @@ services:
       - lumiplus-network
     command: npm run dev
 
+  # AI Service
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: lumiplus-ai-service
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      PORT: 8001
+      ENVIRONMENT: development
+    volumes:
+      - ./ai-service:/app
+      - ai_models:/app/models
+      - ai_uploads:/app/uploads
+    networks:
+      - lumiplus-network
+    command: python -m app.main
+
   # Frontend
   frontend:
     build:
@@ -145,6 +165,10 @@ volumes:
   pgadmin_data:
     driver: local
   backend_uploads:
+    driver: local
+  ai_models:
+    driver: local
+  ai_uploads:
     driver: local
 
 networks:

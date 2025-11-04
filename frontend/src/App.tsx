@@ -10,6 +10,7 @@ import DiagnosesPage from './pages/DiagnosesPage'
 import DiagnosisDetailPage from './pages/DiagnosisDetailPage'
 import SubscriptionPlansPage from './pages/SubscriptionPlansPage'
 import SubscriptionPage from './pages/SubscriptionPage'
+import SkinAnalysisPage from './pages/SkinAnalysisPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const queryClient = new QueryClient({
@@ -82,6 +83,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <SubscriptionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/analysis"
+            element={
+              <ProtectedRoute>
+                <SkinAnalysisPage />
               </ProtectedRoute>
             }
           />
